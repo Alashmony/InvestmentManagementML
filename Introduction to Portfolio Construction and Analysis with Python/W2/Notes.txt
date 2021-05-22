@@ -1,0 +1,3 @@
+1. parse date is not always working
+2. after changing int to date, you should convert to period
+3. if columns has spaces in its names you should truncate/strip it with DataFrame.columns = DataFrame.columns.str.strip()

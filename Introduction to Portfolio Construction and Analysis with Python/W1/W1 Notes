@@ -1,0 +1,35 @@
+pandas:
+pd.read_csv("File_loc/File_name", na_values = ex(-99.99), index_col = 0 ,   parse_dates=True/false)
+
+Annualized Volatility = std()*sqrt(12 or 252 )
+Annualized mean return = ((ret+1).prod() ^ (12 or 252) / (no_of_mon or no_of days)) - 1
+Annualized excess return = Annualized mean return - RFR
+
+Sharpe_ratio = Annualized excess return /  Annualized Volatility
+
+Max Drawdown = The maximum loss could happen if you're unlucky enough to buy at the peak and sell at the trough
+
+Calmar ratio = Annualized excess return / Max Drawdown for the last 36 months
+What's bad with Drawdown?
+  1. Outliars really affect it
+  2. Weekly Drawdown will hide Daily Drawdown and Monthly Drawdown will hide both Weekly and Daily (Daily is the wrost case scenario).
+
+fix months with:
+  1. Converting it to date time (timestamp) with pd.to_datetime(df.index, format = '%Y%m')
+  2. Converting timestamp to period of months with df.index.to__period('M') note that M stands for month
+
+Compute Drawdown:
+  1. Compute wealth index
+  2. Compute previous peaks
+  3. Compute Drawdown - which is the wealth value as a percentage of the previous peak
+
+  1. Compute wealth index:
+    WI = 1000 * (1+(df[return])).cumprod()
+
+  2. Compute previous peaks:
+    peaks = WI.cummax()
+
+  3. Compute Drawdown:
+    Drawdown = (WI - peaks)/peaks
+get the min Drawdown with (Drawdown.min())
+get when it happened (the index) with (Drawdown.idxmin())

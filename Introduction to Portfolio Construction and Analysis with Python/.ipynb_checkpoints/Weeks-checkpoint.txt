@@ -1,0 +1,8 @@
+Week 1 : 	Risk and Return Calculations
+		DrawDown Risk
+
+		Deviations From Normality
+		Downside Risk
+		Semi-Deviation, VaR and CVaR
+
+Week2:		Efficient Frontier
